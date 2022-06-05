@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Foodie</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="delete_account">Delete your account?</string>
+    <string name="save_changes">Save changes</string>
+    <string name="read_storage_permission_denied">Storage read permission is denied, you can change it in settings.</string>
+    <string name="image_selection_failed">Couldn\'t apply this photo, try another one</string>
+    <string name="image_applied">image successfully applied</string>
+    <string name="account_deleted">your account has been successfully deleted</string>
+    <string name="fill_all_fields">"Please, fill all the fields "</string>
+    <string name="profile_info_not_changed">Profile info has not been changed as your data match</string>
+    <string name="profile_info_changed">Profile info has been changed successfully</string>
+    <string name="logging_in">Logging in…</string>
+    <string name="my_profile">My Profile</string>
+    <string name="save">Save</string>
+    <string name="complete_profile">Complete profile</string>
+    <string name="food_for_you">Food for You!</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="no_favorites">No favorite products yet</string>
+    <string name="ready_in_minutes">5-10 Mins</string>
+    <string name="des_text">This beef burger uses 100% quality beef with sliced tomatoes, cucumbers, vegetables and onions</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="number_inccorect">The number is not valid</string>
+    <string name="my_cart_list">My\nCart List</string>
+    <string name="order_unavailable">Ordering is not available just yet!</string>
+
+</resources>

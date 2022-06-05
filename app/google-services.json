@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1925815700",
+    "project_id": "foodie-48ee5",
+    "storage_bucket": "foodie-48ee5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1925815700:android:9a7bc3cc44ee5eb9628381",
+        "android_client_info": {
+          "package_name": "com.southernsunrise.foodie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1925815700-ioqi8pno3iihmvup8nrr31tq19evotfk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.southernsunrise.foodie",
+            "certificate_hash": "572b99c29d1bca803d3ea6007eb394817d8abd89"
+          }
+        },
+        {
+          "client_id": "1925815700-q8b0dce2s5teqdoifavhp8jm4q0lmiln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1JgUhBV6CPNwNzphtz5M-IfR1dUrp32s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1925815700-q8b0dce2s5teqdoifavhp8jm4q0lmiln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

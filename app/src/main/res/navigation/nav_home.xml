@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav2"
+    app:startDestination="@id/foodFragment">
+
+    <fragment
+        android:id="@+id/foodFragment"
+        android:name="com.southernsunrise.foodie.fragments.FoodFragment"
+        android:label="fragment_food"
+        tools:layout="@layout/fragment_food" >
+        <action
+            android:id="@+id/action_foodFragment_to_productDetails"
+            app:destination="@id/productDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/beveragesFragment"
+        android:name="com.southernsunrise.foodie.fragments.BeveragesFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_beverages" >
+        <action
+            android:id="@+id/action_beveragesFragment_to_productDetails"
+            app:destination="@id/productDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/dessertsFragment"
+        android:name="com.southernsunrise.foodie.fragments.DessertsFragment"
+        android:label="fragment_third"
+        tools:layout="@layout/fragment_desserts" >
+        <action
+            android:id="@+id/action_dessertsFragment_to_productDetails"
+            app:destination="@id/productDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetails"
+        android:name="com.southernsunrise.foodie.fragments.ProductDetailsFragment"
+        android:label="fragment_item_details"
+        tools:layout="@layout/fragment_product_details" >
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
+        <argument
+            android:name="productName"
+            app:argType="string" />
+    </fragment>
+</navigation>

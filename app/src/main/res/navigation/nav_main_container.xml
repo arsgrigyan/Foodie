@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main_container"
+    app:startDestination="@id/drawerMainContainerFragment">
+
+    <fragment
+        android:id="@+id/drawerMainContainerFragment"
+        android:name="com.southernsunrise.foodie.fragments.DrawerMainContainerFragment"
+        android:label="fragment_drawer_main_container"
+        tools:layout="@layout/fragment_drawer_main_container" >
+        <action
+            android:id="@+id/action_drawerMainContainerFragment_to_profileScreenFragment"
+            app:destination="@id/profileScreenFragment"/>
+           <!--
+            app:enterAnim="@anim/fade_in_anim"
+            app:exitAnim="@anim/fade_out_anim1"
+            app:popEnterAnim="@anim/fade_in_anim"
+            app:popExitAnim="@anim/fade_out_anim1"-->
+
+        <action
+            android:id="@+id/action_drawerMainContainerFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileScreenFragment"
+        android:name="com.southernsunrise.foodie.fragments.ProfileScreenFragment"
+        android:label="fragment_profile_screen"
+        tools:layout="@layout/fragment_profile_screen" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.southernsunrise.foodie.fragments.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="com.southernsunrise.foodie.fragments.OrderFragment"
+        android:label="fragment_order"
+        tools:layout="@layout/fragment_order" />
+</navigation>

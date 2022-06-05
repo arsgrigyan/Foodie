@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/foodFragment"
+        android:icon="@drawable/ic_food"
+        android:menuCategory="secondary"
+        android:title="Food" />
+    <item
+        android:id="@+id/beveragesFragment"
+        android:icon="@drawable/beverages"
+        android:menuCategory="secondary"
+        android:title="Beverages" />
+    <item
+        android:id="@+id/dessertsFragment"
+        android:icon="@drawable/desserts"
+        android:menuCategory="secondary"
+        android:title="Desserts" />
+
+
+</menu>

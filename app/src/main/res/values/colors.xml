@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_yellow_green">#FFC2E163</color>
+    <color name="color_yellow_green_dark">#adcb52</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="radio_button_green">#B4C383</color>
+    <color name="profile_background_color">#f3f7f8</color>
+    <color name="error_red">#FF9494</color>
+    <color name="progress_gray_layer">#50000000</color>
+    <color name="green_yellow_dark">#96be20</color>
+</resources>

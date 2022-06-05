@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.FavoritesFragment"
+    android:id="@+id/favoritesFragment">
+
+   <GridView
+       android:id="@+id/fav_gridView"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_row="0"
+       android:layout_column="2"
+       android:numColumns="auto_fit"
+       android:horizontalSpacing="20dp"
+       android:verticalSpacing="20dp"
+       android:clipToPadding="false"
+       tools:layout_editor_absoluteX="180dp"
+       tools:layout_editor_absoluteY="456dp"
+       tools:listitem="@layout/list_item"
+       android:gravity="center"
+       android:padding="15dp"
+       android:scrollbarStyle="outsideOverlay"
+       />
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/tv_noFavorites"
+       android:text="@string/no_favorites"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="@+id/fav_gridView"
+       app:layout_constraintTop_toTopOf="parent"
+       android:visibility="gone"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
