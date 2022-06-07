@@ -8,14 +8,12 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import com.hbb20.CountryCodePicker
 import com.southernsunrise.foodie.R
@@ -56,6 +54,10 @@ class EditProfileFragment : Fragment(), View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_edit_profile, container, false)
+
+        val window: Window = requireActivity().window
+        window.statusBarColor = Color.parseColor("#adcb52")
+        WindowInsetsControllerCompat(window,window.decorView).isAppearanceLightStatusBars = true
 
         val builder = AlertDialog.Builder(requireContext())
         builder.setView(R.layout.layout_progressbar)

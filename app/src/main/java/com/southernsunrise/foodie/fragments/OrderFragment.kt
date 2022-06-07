@@ -30,6 +30,7 @@ class OrderFragment(private val checkoutAmount: Double) : Fragment(), View.OnCli
     private lateinit var payOnCreditEditText: EditText
     private lateinit var homeAddressEditText: EditText
     private lateinit var officeAddressEditText: EditText
+    private lateinit var paymentCardImageView: ImageView
 
     private lateinit var textWatcher: TextWatcher
 
@@ -64,6 +65,9 @@ class OrderFragment(private val checkoutAmount: Double) : Fragment(), View.OnCli
         homeAddressEditText.setOnFocusChanged()
         officeAddressEditText = view.findViewById(R.id.et_address_office)
         officeAddressEditText.setOnFocusChanged()
+
+        paymentCardImageView = view.findViewById(R.id.iv_card)
+
         getAddressesAndSetupEditTexts()
         getCheckedAddressAndPaymentMethodAndSetupCheckBoxes()
         getCreditCardInfo()
@@ -94,7 +98,7 @@ class OrderFragment(private val checkoutAmount: Double) : Fragment(), View.OnCli
                         paymentCashCheckBox.isChecked = true
 
                     }
-                    Constants.CHECKED_PAYMENT_TYPE_CREDIT -> {
+                    Constants.CHECKED_PAYMENT_TYPE_CASH_FREE -> {
                         paymentCreditCheckBox.isChecked = true
 
                     }
@@ -121,14 +125,40 @@ class OrderFragment(private val checkoutAmount: Double) : Fragment(), View.OnCli
 
     }
 
-    fun getCreditCardInfo(){
+    fun getCreditCardInfo() {
         val currentUser = FirebaseAuth.getInstance().currentUser!!
-        FirebaseFirestore.getInstance().collection(Constants.USERS).document(currentUser.uid).get().addOnSuccessListener {
-            val creditCardCode = it.getLong(Constants.CREDIT_CARD)
-            if(creditCardCode.toString().isNotBlank()){
-                payOnCreditEditText.setText(creditCardCode.toString())
+        FirebaseFirestore.getInstance().collection(Constants.USERS).document(currentUser.uid).get()
+            .addOnSuccessListener {
+                val creditCardCode = it.getLong(Constants.CREDIT_CARD) ?: ""
+                val cashFreePaymentMethod = it.getString(Constants.CHECKED_CASH_FREE_PAYMENT_TYPE)
+                when (cashFreePaymentMethod) {
+                    Constants.PAYMENT_METHOD_MASTERCARD -> {
+                        paymentCardImageView.setImageResource(R.drawable.ic_mastercard)
+                    }
+                    Constants.PAYMENT_METHOD_VISA -> {
+                        paymentCardImageView.setImageResource(R.drawable.ic_visa)
+
+                    }
+                    Constants.PAYMENT_METHOD_PAYPAL -> {
+
+                        // changing card payment edittext to paypal editText by changing some design
+                        paymentCardImageView.setImageResource(R.drawable.ic_paypal)
+                        payOnCreditEditText.setText("$$checkoutAmount")
+                        payOnCreditEditText.transformationMethod = null;
+                        payOnCreditEditText.isFocusable = false
+                        val params: ViewGroup.MarginLayoutParams = payOnCreditEditText.layoutParams as ViewGroup.MarginLayoutParams
+                        params.leftMargin = 4
+                        payOnCreditEditText.layoutParams = params
+                    }
+
+                }
+                if (cashFreePaymentMethod != Constants.PAYMENT_METHOD_PAYPAL) {
+                    if (creditCardCode.toString().isNotBlank()) {
+                        payOnCreditEditText.setText(creditCardCode.toString())
+                    }
+                }
+
             }
-        }
     }
 
 
@@ -149,13 +179,13 @@ class OrderFragment(private val checkoutAmount: Double) : Fragment(), View.OnCli
                 R.id.cb_payment_credit -> {
                     p0.isChecked = true
                     paymentCashCheckBox.isChecked = false
-                    FirestoreClass().setOrUpdateCheckedPayment(Constants.CHECKED_PAYMENT_TYPE_CREDIT)
+                    FirestoreClass().setOrUpdateCheckedPaymentMethod(Constants.CHECKED_PAYMENT_TYPE_CASH_FREE)
 
                 }
                 R.id.cb_payment_cash -> {
                     p0.isChecked = true
                     paymentCreditCheckBox.isChecked = false
-                    FirestoreClass().setOrUpdateCheckedPayment(Constants.CHECKED_PAYMENT_TYPE_CASH)
+                    FirestoreClass().setOrUpdateCheckedPaymentMethod(Constants.CHECKED_PAYMENT_TYPE_CASH)
 
                 }
 

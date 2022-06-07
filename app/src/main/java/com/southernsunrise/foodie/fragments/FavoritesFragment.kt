@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.GridView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.southernsunrise.foodie.R
 import com.southernsunrise.foodie.adapters.ProductListAdapter
 import com.southernsunrise.foodie.models.Product
@@ -17,7 +18,7 @@ class FavoritesFragment : Fragment() {
 
     private var favoritesList: ArrayList<Product>? = null
     private lateinit var favoritesGridView: GridView
-private lateinit var noFavoritesTextView:TextView
+    private lateinit var noFavoritesTextView: TextView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,24 +41,33 @@ private lateinit var noFavoritesTextView:TextView
             val adapter = ProductListAdapter(requireContext(), favoriteProductsList)
             favoritesGridView.adapter = adapter
             favoritesList = favoriteProductsList
+            favoritesGridView.setOnItemClickListener { adapterView, view, i, l ->
+                navigateToProductDetailsFrag(favoriteProductsList[i])
+            }
 
         }
     }
 
-   /* private fun navigateToDetailsFragment(bundle: Bundle) {
-        val nextFrag = ProductDetailsFragment()
-        nextFrag.arguments = bundle
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainerView, nextFrag)
-            .addToBackStack(null)
-            .setTransition(TRANSIT_FRAGMENT_OPEN)
-            .commit()
-    }
+    /* private fun navigateToDetailsFragment(bundle: Bundle) {
+         val nextFrag = ProductDetailsFragment()
+         nextFrag.arguments = bundle
+         requireActivity().supportFragmentManager.beginTransaction()
+             .replace(R.id.fragmentContainerView, nextFrag)
+             .addToBackStack(null)
+             .setTransition(TRANSIT_FRAGMENT_OPEN)
+             .commit()
+     }
 
 
-    */
+     */
     fun noFavorites() {
         noFavoritesTextView.visibility = View.VISIBLE
+    }
+
+    fun navigateToProductDetailsFrag(favoriteProduct:Product) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainerView, ProductDetailsFragment(favoriteProduct))
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit()
     }
 
 

@@ -43,6 +43,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
+
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,7 +65,20 @@
         android:padding="15dp"
         android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@+id/textView9">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
+           <TextView
+               android:id="@+id/tv_no_product_in_cart"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@string/no_porudct_in_cart"
+               android:visibility="gone"
+               android:background="@color/transparent"
+               android:textSize="15dp"
+               android:layout_centerInParent="true"
+               />
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -97,6 +111,7 @@
                 android:rotation="180" />
 
         </FrameLayout>
+        </RelativeLayout>
 
     </ScrollView>
 
@@ -121,8 +136,8 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.195"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintVertical_bias="0.109"
+        tools:layout_editor_absoluteX="16dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -163,15 +178,16 @@
         android:layout_height="60dp"
         android:background="@drawable/button_background"
         android:backgroundTint="@color/black"
-        android:text="Checkout"
-        android:textSize="16dp"
         android:fontFamily="@font/saucegrotesksemibold"
-        android:textColor="@color/white"
+        android:text="Checkout"
         android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
+        app:layout_constraintVertical_bias="0.47" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

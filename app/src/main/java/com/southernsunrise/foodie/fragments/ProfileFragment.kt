@@ -9,13 +9,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.southernsunrise.foodie.PaymentMethodsFragment
 import com.southernsunrise.foodie.R
 import com.southernsunrise.foodie.adapters.ProfileListAdapter
 import com.southernsunrise.foodie.firebase.FirestoreClass
@@ -34,6 +38,7 @@ class ProfileFragment : Fragment() {
     private lateinit var userPhotoImageView: ImageView
     private lateinit var userPhotoImageViewProgressForegroundLayer: RelativeLayout
     private lateinit var userData: User
+    private lateinit var window: Window
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +46,10 @@ class ProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        window = requireActivity().window
+        window.statusBarColor = Color.parseColor("#f3f7f8")
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
 
         val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
         activity?.setActionBar(toolbar)
@@ -68,10 +77,25 @@ class ProfileFragment : Fragment() {
         profileItemListView.divider = null
         val profileList = ArrayList<ProfileListItem>()
         profileList.add(ProfileListItem(R.drawable.ic_history, "History"))
-        profileList.add(ProfileListItem(R.drawable.ic_favorite_full, "Favorite"))
-        profileList.add(ProfileListItem(R.drawable.ic_wallet, "Payment method"))
+        profileList.add(ProfileListItem(R.drawable.ic_coupon, "Coupons"))
+        profileList.add(ProfileListItem(R.drawable.ic_wallet, "Payment methods"))
         val profileListAdapter = ProfileListAdapter(requireContext(), profileList)
         profileItemListView.adapter = profileListAdapter
+        profileItemListView.setOnItemClickListener { adapterView, view, i, l ->
+            when (i) {
+                0 -> {
+                   Toast.makeText(requireContext(), getString(R.string.history_unvailable), Toast.LENGTH_SHORT ).show()
+                }
+                1 -> {
+                    Toast.makeText(requireContext(), getString(R.string.coupons_unavailable), Toast.LENGTH_SHORT ).show()
+
+                }
+                2 -> {
+                    navigateToPaymentMethodsFragment()
+                }
+            }
+
+        }
 
         signOutButton = view.findViewById(R.id.btn_signOut)
         signOutButton.setOnClickListener {
@@ -85,6 +109,12 @@ class ProfileFragment : Fragment() {
 
 
         return view
+    }
+
+    fun navigateToPaymentMethodsFragment() {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainerView, PaymentMethodsFragment()).addToBackStack(null)
+            .setTransition(TRANSIT_FRAGMENT_OPEN).commit()
     }
 
 
@@ -160,6 +190,8 @@ class ProfileFragment : Fragment() {
         sharedPrefs.edit().putBoolean(Constants.USER_IS_LOGGED_IN, false).apply()
 
         requireActivity().window.statusBarColor = Color.parseColor("#96be20")
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
+
     }
 
     private fun navigateToEditProfileFragment() {

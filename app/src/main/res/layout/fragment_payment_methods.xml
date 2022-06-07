@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa"
+    tools:context=".PaymentMethodsFragment">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:navigationIcon="@drawable/left_arrow_24"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/saucegrotesksemibold"
+        android:text="Payment Methods"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <LinearLayout
+        android:id="@+id/layout_rb_mastercard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="48dp"
+        android:layout_weight="1"
+        android:background="@drawable/checkout_items_background"
+        android:backgroundTint="@color/white"
+        android:elevation="1.5dp"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        tools:layout_editor_absoluteX="0dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_mastercard" />
+
+        <RadioButton
+            android:id="@+id/rb_mastercard"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:clickable="false"
+            android:buttonTint="@color/color_yellow_green"
+            android:fontFamily="@font/saucegroteskregular"
+            android:layoutDirection="rtl"
+            android:text="Master Card"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_rb_paypal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:background="@drawable/checkout_items_background"
+        android:backgroundTint="@color/white"
+        android:elevation="1.5dp"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/layout_rb_mastercard"
+        tools:layout_editor_absoluteX="20dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_paypal" />
+
+        <RadioButton
+            android:id="@+id/rb_paypal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:buttonTint="@color/color_yellow_green"
+            android:fontFamily="@font/saucegroteskregular"
+            android:layoutDirection="rtl"
+            android:text="Paypal"
+            android:clickable="false"
+            android:textSize="20sp"
+            tools:checked="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_rb_visa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="28dp"
+        android:layout_weight="1"
+        android:background="@drawable/checkout_items_background"
+        android:backgroundTint="@color/white"
+        android:elevation="1.5dp"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/layout_rb_paypal"
+        tools:layout_editor_absoluteX="20dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_visa" />
+
+        <RadioButton
+            android:id="@+id/rb_visa"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:buttonTint="@color/color_yellow_green"
+            android:fontFamily="@font/saucegroteskregular"
+            android:layoutDirection="rtl"
+            android:text="Visa"
+            android:clickable="false"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_done"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="25dp"
+        android:background="@drawable/button_background"
+        android:text="Done"
+        android:textSize="20sp"
+        android:fontFamily="@font/saucegrotesksemibold"
+         android:textColor="@color/white"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_rb_visa"
+        app:layout_constraintVertical_bias="0.832"
+        tools:layout_editor_absoluteX="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

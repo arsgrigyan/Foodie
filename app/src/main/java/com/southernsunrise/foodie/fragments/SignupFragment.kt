@@ -25,9 +25,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.southernsunrise.foodie.utilities.Constants
+import com.google.firebase.firestore.FirebaseFirestore
 import com.southernsunrise.foodie.R
 import com.southernsunrise.foodie.firebase.FirestoreClass
+import com.southernsunrise.foodie.utilities.Constants
 import com.southernsunrise.foodie.utilities.User
 
 
@@ -49,7 +50,7 @@ class SignupFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_signup, container, false)
 
         val dialogBuilder = AlertDialog.Builder(requireContext())
-         dialogBuilder.setView(R.layout.layout_progressbar)
+        dialogBuilder.setView(R.layout.layout_progressbar)
         progressDialog = dialogBuilder.create()
 
         loginTextView = view.findViewById(R.id.tv_logIn)
@@ -102,21 +103,23 @@ class SignupFragment : Fragment() {
             .addOnCompleteListener {
                 if (it.isSuccessful) {
 
-                    val firebaseUser: FirebaseUser = it.result!!.user!!
+                    val currentUser: FirebaseUser = it.result!!.user!!
 
                     val user = User(
-                        firebaseUser.uid,
+                        currentUser.uid,
                         nameEditText.text.toString().trim(),
                         emailEditText.text.toString().trim(),
                         profileCompleted = false,
                         image = ""
                     )
 
+
+
                     FirestoreClass().registerUser(this@SignupFragment, user)
                     //   logIn()
                     setUserLoggedIn()
-                    updateUserDisplayName(firebaseUser)
-                    sendVerificationEmail(firebaseUser)
+                    updateUserDisplayName(currentUser)
+                    sendVerificationEmail(currentUser)
                     //  navigateToMainContainerFragment()
 
                 } else Toast.makeText(
@@ -172,13 +175,13 @@ class SignupFragment : Fragment() {
                     ds.isUnderlineText = false
                 }
             }
-        
+
         loginTextView.text = logInSpannable
         loginTextView.movementMethod = LinkMovementMethod()
     }
 
     private fun logIn() {
-       // activity?.let { Constants.showProgressDialog(progressBar, it) }
+        // activity?.let { Constants.showProgressDialog(progressBar, it) }
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(
             emailEditText.text.toString().trim(),
@@ -200,7 +203,7 @@ class SignupFragment : Fragment() {
 
     }
 
-    fun goToProfileCompletionScreen(){
+    fun goToProfileCompletionScreen() {
         requireActivity().supportFragmentManager.beginTransaction().replace(
             R.id.fragmentContainerView, EditProfileFragment()
         ).commit()

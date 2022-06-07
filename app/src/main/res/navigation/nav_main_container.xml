@@ -13,15 +13,11 @@
         <action
             android:id="@+id/action_drawerMainContainerFragment_to_profileScreenFragment"
             app:destination="@id/profileScreenFragment"/>
-           <!--
-            app:enterAnim="@anim/fade_in_anim"
-            app:exitAnim="@anim/fade_out_anim1"
-            app:popEnterAnim="@anim/fade_in_anim"
-            app:popExitAnim="@anim/fade_out_anim1"-->
 
         <action
             android:id="@+id/action_drawerMainContainerFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/profileScreenFragment"
@@ -38,4 +34,14 @@
         android:name="com.southernsunrise.foodie.fragments.OrderFragment"
         android:label="fragment_order"
         tools:layout="@layout/fragment_order" />
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="com.southernsunrise.foodie.AboutUsFragment"
+        android:label="fragment_about_us"
+        tools:layout="@layout/fragment_about_us" />
+    <fragment
+        android:id="@+id/paymentMethodsFragment"
+        android:name="com.southernsunrise.foodie.PaymentMethodsFragment"
+        android:label="fragment_payment_methods"
+        tools:layout="@layout/fragment_payment_methods" />
 </navigation>

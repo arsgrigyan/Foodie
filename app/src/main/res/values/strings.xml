@@ -18,7 +18,7 @@
     <string name="profile_info_not_changed">Profile info has not been changed as your data match</string>
     <string name="profile_info_changed">Profile info has been changed successfully</string>
     <string name="logging_in">Logging in…</string>
-    <string name="my_profile">My Profile</string>
+    <string name="profile">Profile</string>
     <string name="save">Save</string>
     <string name="complete_profile">Complete profile</string>
     <string name="food_for_you">Food for You!</string>
@@ -31,5 +31,13 @@
     <string name="number_inccorect">The number is not valid</string>
     <string name="my_cart_list">My\nCart List</string>
     <string name="order_unavailable">Ordering is not available just yet!</string>
+    <string name="app_description">A food delivery app using Firebase</string>
+    <string name="additional_info">Some of the app functionalities may not be working as expected as it\'s been created for learning purposes</string>
+    <string name="created_by">Created with 💚 by Arsen</string>
+    <string name="no_porudct_in_cart">No porducts in cart</string>
+    <string name="history_unvailable">History is not available</string>
+    <string name="coupons_unavailable">Coupons are not available</string>
+    <string name="added_to_cart">Product added to cart</string>
+    <string name="removed_from_cart">Product removed from cart</string>
 
 </resources>

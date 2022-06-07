@@ -20,15 +20,15 @@ import androidx.core.text.set
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.southernsunrise.foodie.utilities.Constants
 import com.southernsunrise.foodie.R
 import com.southernsunrise.foodie.firebase.FirestoreClass
+import com.southernsunrise.foodie.utilities.Constants
 
 
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(), View.OnClickListener {
 
-    private lateinit var tv_termsAndPrivacy: TextView
-    private lateinit var tv_signUp: TextView
+    private lateinit var termsAndPrivacyTextView: TextView
+    private lateinit var signUpTextView: TextView
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var progressBar: ProgressBar
@@ -43,8 +43,14 @@ class LoginFragment : Fragment() {
 
         progressBar = view.findViewById(R.id.progressbar)
 
-        tv_termsAndPrivacy = view.findViewById(R.id.tv_termsAndPrivacy)
-        tv_signUp = view.findViewById(R.id.tv_signUp)
+        val googleSignInImageView: ImageView = view.findViewById(R.id.iv_google_signIn)
+        val facebookSignInImageView: ImageView = view.findViewById(R.id.iv_facebook_signIn)
+
+        googleSignInImageView.setOnClickListener(this)
+        facebookSignInImageView.setOnClickListener(this)
+
+        termsAndPrivacyTextView = view.findViewById(R.id.tv_termsAndPrivacy)
+        signUpTextView = view.findViewById(R.id.tv_signUp)
         setUpSpannableTexts()
         val forgotPasswordTextView = view.findViewById<TextView>(R.id.tv_forgotPassword)
         forgotPasswordTextView.setOnClickListener {
@@ -101,7 +107,7 @@ class LoginFragment : Fragment() {
 
     private fun setUpSpannableTexts() {
         val termsOfUseAndPrivacyPolicySpannableString =
-            SpannableString(tv_termsAndPrivacy.text.toString())
+            SpannableString(termsAndPrivacyTextView.text.toString())
         termsOfUseAndPrivacyPolicySpannableString[33..45] = object : ClickableSpan() {
 
             override fun onClick(p0: View) {
@@ -124,9 +130,9 @@ class LoginFragment : Fragment() {
                 ds.color = Color.parseColor("#8EA545")
             }
         }
-        tv_termsAndPrivacy.text = termsOfUseAndPrivacyPolicySpannableString
+        termsAndPrivacyTextView.text = termsOfUseAndPrivacyPolicySpannableString
 
-        val signUpSpannable = SpannableString(tv_signUp.text.toString())
+        val signUpSpannable = SpannableString(signUpTextView.text.toString())
         signUpSpannable[(signUpSpannable.length - 8)..signUpSpannable.length] =
             object : ClickableSpan() {
                 override fun onClick(p0: View) {
@@ -141,8 +147,8 @@ class LoginFragment : Fragment() {
                 }
 
             }
-        tv_signUp.text = signUpSpannable
-        tv_signUp.movementMethod = LinkMovementMethod()
+        signUpTextView.text = signUpSpannable
+        signUpTextView.movementMethod = LinkMovementMethod()
 
 
     }
@@ -199,13 +205,30 @@ class LoginFragment : Fragment() {
         }
     }
 
-    fun goToProfileCompletionScreen(){
+    fun goToProfileCompletionScreen() {
         requireActivity().supportFragmentManager.beginTransaction().replace(
             R.id.fragmentContainerView, EditProfileFragment()
         ).commit()
     }
 
-
+    override fun onClick(p0: View?) {
+        when (p0?.id) {
+            R.id.iv_google_signIn -> {
+                Toast.makeText(
+                    requireContext(),
+                    "Signing in with google will soon be possible",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            R.id.iv_facebook_signIn -> {
+                Toast.makeText(
+                    requireContext(),
+                    "Signing in with facebook will soon be possible",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
 
 
 }

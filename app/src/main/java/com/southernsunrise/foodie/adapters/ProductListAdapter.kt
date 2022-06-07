@@ -4,10 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.southernsunrise.foodie.R
@@ -117,10 +114,12 @@ class ProductListAdapter(var context: Context, var productList: ArrayList<Produc
                     if (!cartProductsIDsList.contains(currentProduct.productId.toString())) {
                         addRemoveFromCartButton.setImageResource(R.drawable.ic_remove_from_cart)
                         FirestoreClass().addProductToCart(currentProduct)
+                        Toast.makeText(context, context.getString(R.string.added_to_cart), Toast.LENGTH_SHORT).show()
                         cartProductsIDsList.add(currentProduct.productId.toString())
                     } else {
                         addRemoveFromCartButton.setImageResource(R.drawable.ic_add_to_cart)
                         FirestoreClass().removeProductFromCart(currentProduct)
+                        Toast.makeText(context, context.getString(R.string.removed_from_cart), Toast.LENGTH_SHORT).show()
                         cartProductsIDsList.remove(currentProduct.productId.toString())
 
                     }

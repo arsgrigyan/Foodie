@@ -9,9 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.southernsunrise.foodie.fragments.CartFragment
 import com.southernsunrise.foodie.R
 import com.southernsunrise.foodie.firebase.FirestoreClass
+import com.southernsunrise.foodie.fragments.CartFragment
 import com.southernsunrise.foodie.models.Product
 import com.squareup.picasso.Picasso
 
@@ -44,14 +44,14 @@ class RecyclerViewAdapter(
             holder.increaseProductAmountButton.setOnClickListener {
                     holder.productAmountTextView.text = (++productAmount).toString()
                     fragment.updatePayAmount(product.productPrice)
-                FirestoreClass().updateProductAmountInCart(product, productAmount)
+                FirestoreClass().updateProductAmountInCart(fragment, product, productAmount)
             }
 
             holder.decreaseProductAmountButton.setOnClickListener {
                 if (productAmount > 1) {
                     holder.productAmountTextView.text = (--productAmount).toString()
                     fragment.updatePayAmount(-(product.productPrice)!!)
-                    FirestoreClass().updateProductAmountInCart(product, productAmount)
+                    FirestoreClass().updateProductAmountInCart(fragment, product, productAmount)
                 }
             }
         }

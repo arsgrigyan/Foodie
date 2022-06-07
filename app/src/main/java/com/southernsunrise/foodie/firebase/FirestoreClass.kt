@@ -30,7 +30,11 @@ class FirestoreClass {
             .document(userInfo.id)
             .set(userInfo, SetOptions.merge())
             .addOnSuccessListener {
-
+                // By default payment type would be mastercard which user can later change
+                FirebaseFirestore.getInstance().collection(Constants.USERS)
+                    .document(getCurrentUserId()).update(
+                        hashMapOf<String, Any>(Constants.CHECKED_CASH_FREE_PAYMENT_TYPE to Constants.PAYMENT_METHOD_MASTERCARD)
+                    )
             }
             .addOnFailureListener {
             }
@@ -330,36 +334,38 @@ class FirestoreClass {
             }
     }
 
-    fun updateProductAmountInCart(product: Product, amount: Int) {
+    fun updateProductAmountInCart(fragment: Fragment, product: Product, amount: Int) {
         val info = hashMapOf<String, Any>(Constants.PRODUCT_AMOUNT_ADDED_IN_CART to amount)
         mFireStore.collection(Constants.USERS).document(getCurrentUserId())
             .collection(Constants.USER_CART).document(product.productId.toString()).update(info)
-            .addOnSuccessListener {
-
+            .addOnFailureListener {
+                Toast.makeText(fragment.requireContext(), it.message.toString(), Toast.LENGTH_SHORT)
+                    .show()
             }
     }
 
     fun setOrUpdateUserAddresses(address: String, addressType: String) {
-        val currentUser = FirebaseAuth.getInstance().currentUser!!
-        mFireStore.collection(Constants.USERS).document(currentUser.uid)
+        mFireStore.collection(Constants.USERS).document(getCurrentUserId())
             .update(hashMapOf<String, Any>(addressType to address))
     }
 
     fun setOrUpdateCheckedAddress(checkedAddressType: String) {
-        val currentUser = FirebaseAuth.getInstance().currentUser!!
-        mFireStore.collection(Constants.USERS).document(currentUser.uid)
+        mFireStore.collection(Constants.USERS).document(getCurrentUserId())
             .update(hashMapOf<String, Any>(Constants.CHECKED_ADDRESS_TYPE to checkedAddressType))
     }
 
-    fun setOrUpdateCreditCardInfo(creditCardCode:Long) {
-        val currentUser = FirebaseAuth.getInstance().currentUser!!
-        mFireStore.collection(Constants.USERS).document(currentUser.uid)
+    fun setOrUpdateCreditCardInfo(creditCardCode: Long) {
+        mFireStore.collection(Constants.USERS).document(getCurrentUserId())
             .update(hashMapOf<String, Any>(Constants.CREDIT_CARD to creditCardCode))
     }
 
-    fun setOrUpdateCheckedPayment(checkedPaymentType: String) {
-        val currentUser = FirebaseAuth.getInstance().currentUser!!
-        mFireStore.collection(Constants.USERS).document(currentUser.uid)
+    fun setOrUpdateCheckedCashFreePaymentType(paymentType: String) {
+        mFireStore.collection(Constants.USERS).document(getCurrentUserId())
+            .update(hashMapOf<String, Any>(Constants.CHECKED_CASH_FREE_PAYMENT_TYPE to paymentType))
+    }
+
+    fun setOrUpdateCheckedPaymentMethod(checkedPaymentType: String) {
+        mFireStore.collection(Constants.USERS).document(getCurrentUserId())
             .update(hashMapOf<String, Any>(Constants.CHECKED_PAYMENT_TYPE to checkedPaymentType))
     }
 

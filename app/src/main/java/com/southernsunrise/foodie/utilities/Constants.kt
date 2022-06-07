@@ -19,15 +19,21 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 object Constants {
+    const val PAYMENT_METHOD_MASTERCARD: String = "mastercard"
+    const val PAYMENT_METHOD_VISA: String = "visa"
+    const val PAYMENT_METHOD_PAYPAL: String = "paypal"
     const val ADDRESS_HOME: String = "homeAddress"
     const val ADDRESS_OFFICE: String = "officeAddress"
     const val CREDIT_CARD: String = "creditCard"
+
+
+    const val CHECKED_CASH_FREE_PAYMENT_TYPE = "checkedCashFreePaymentType"
+    const val CHECKED_PAYMENT_TYPE_CASH_FREE: String = "cashFree"
 
     const val CHECKED_ADDRESS_TYPE_HOME = "home"
     const val CHECKED_ADDRESS_TYPE_OFFICE = "office"
     const val CHECKED_ADDRESS_TYPE = "checkedAddressType"
     const val CHECKED_PAYMENT_TYPE = "checkedPaymentType"
-    const val CHECKED_PAYMENT_TYPE_CREDIT = "credit"
     const val CHECKED_PAYMENT_TYPE_CASH = "cash"
     const val PRODUCT_AMOUNT_ADDED_IN_CART: String = "productAmountInCart"
     const val USER_CART: String = "cart"
@@ -37,7 +43,6 @@ object Constants {
     const val FAVORITE_PRODUCTS = "favoriteProducts"
     const val FOODIE_PREFERENCES = "FoodiePreferences"
     const val LOGGED_IN_USERNAME = "logged_in_username"
-    const val USER_GENDER = "user_gender"
     const val USER_IS_LOGGED_IN = "isLoggedIn"
     const val USERNAME = "username"
     const val MALE = "male"

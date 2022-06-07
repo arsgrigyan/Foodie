@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ScrollView
-import android.widget.TextView
+import android.widget.*
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN
@@ -33,8 +30,8 @@ class CartFragment : Fragment() {
     private lateinit var backImageButton: ImageButton
     private lateinit var checkoutButton: Button
     private var wholePayAmount: Double = 0.0
-    private var productAmount:Int = 0
-    private lateinit var productAmountsHashMap:HashMap<Long, Any>
+    private lateinit var productAmountsHashMap: HashMap<Long, Any>
+    private lateinit var noProductInCartTextView: TextView
 
 
     override fun onCreateView(
@@ -44,10 +41,11 @@ class CartFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_cart, container, false)
 
-        val window =  activity?.window!!
+        val window = activity?.window!!
         window?.statusBarColor = Color.WHITE
-        WindowInsetsControllerCompat(window,window.decorView).isAppearanceLightStatusBars = true
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
 
+        noProductInCartTextView = view.findViewById(R.id.tv_no_product_in_cart)
 
         cartProductsRecyclerView = view.findViewById(R.id.cart_recyclerView)
         scrollView = view.findViewById(R.id.scrollView)
@@ -58,10 +56,15 @@ class CartFragment : Fragment() {
         }
         checkoutButton = view.findViewById(R.id.btn_checkout)
         checkoutButton.setOnClickListener {
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainerView, OrderFragment(roundOffDecimal(wholePayAmount)!!)).addToBackStack(null)
-                .setTransition(TRANSIT_FRAGMENT_OPEN).commit()
-            wholePayAmount = 0.0
+            if (wholePayAmount > 0) {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(
+                        R.id.fragmentContainerView,
+                        OrderFragment(roundOffDecimal(wholePayAmount)!!)
+                    ).addToBackStack(null)
+                    .setTransition(TRANSIT_FRAGMENT_OPEN).commit()
+                wholePayAmount = 0.0
+            }else Toast.makeText(requireContext(), "No products in cart to checkout", Toast.LENGTH_SHORT).show()
 
         }
         getCartProductsAndSetRecyclerView()
@@ -91,15 +94,17 @@ class CartFragment : Fragment() {
                         )
 
                     )
-                    productAmountsHashMap[product.id.toLong()] = product.getLong(Constants.PRODUCT_AMOUNT_ADDED_IN_CART)!!.toInt()
+                    productAmountsHashMap[product.id.toLong()] =
+                        product.getLong(Constants.PRODUCT_AMOUNT_ADDED_IN_CART)!!.toInt()
                     wholePayAmount += product.getDouble(Constants.PRODUCT_PRICE)!! * (productAmountsHashMap[product.id.toLong()] as Int)
                 }
                 totalPayAmountTextView.text = roundOffDecimal(wholePayAmount).toString()
                 if (cartList.isNotEmpty()) {
                     setupRecyclerView(cartList)
-                }
+                } else noProductInCartTextView.visibility = View.VISIBLE
             }
     }
+
     private fun roundOffDecimal(number: Double): Double? {
         val df = DecimalFormat("#.##")
         df.roundingMode = RoundingMode.CEILING

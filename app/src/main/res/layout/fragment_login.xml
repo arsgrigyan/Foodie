@@ -121,6 +121,7 @@
         app:layout_constraintVertical_bias="0.295">
 
         <ImageView
+            android:id="@+id/iv_google_signIn"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_weight="1"
@@ -131,6 +132,7 @@
             android:layout_height="wrap_content" />
 
         <ImageView
+            android:id="@+id/iv_facebook_signIn"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_weight="1"
