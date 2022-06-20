@@ -19,7 +19,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.southernsunrise.foodie.PaymentMethodsFragment
 import com.southernsunrise.foodie.R
 import com.southernsunrise.foodie.adapters.ProfileListAdapter
 import com.southernsunrise.foodie.firebase.FirestoreClass
@@ -135,24 +134,17 @@ class ProfileFragment : Fragment() {
             .setPositiveButton(
                 "yes, delete my account",
                 DialogInterface.OnClickListener { dialogInterface, i ->
-                    deleteUser()
+                    deleteUserAndItsData()
                 })
             .setNegativeButton("cancel", null)
             // Create the AlertDialog object and return it
             .show()
     }
 
-    private fun deleteUser() {
+    private fun deleteUserAndItsData() {
         val user = Firebase.auth.currentUser!!
         try {
             FirestoreClass().removeUserData(this, user, userData.image)
-            user.delete()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Constants.showSnackBar(requireView(), getString(R.string.account_deleted))
-                        signOut()
-                    }
-                }
         } catch (e: Exception) {
             Log.i("deletion error", e.message.toString())
         }
@@ -215,5 +207,16 @@ class ProfileFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         getUserData()
+    }
+
+    fun deleteUser() {
+        val currentUser = FirebaseAuth.getInstance().currentUser!!
+        currentUser.delete()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Constants.showSnackBar(requireView(), getString(R.string.account_deleted))
+                    signOut()
+                }
+            }
     }
 }

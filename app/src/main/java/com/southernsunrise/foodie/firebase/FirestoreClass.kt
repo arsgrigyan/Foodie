@@ -46,6 +46,9 @@ class FirestoreClass {
                 .addOnFailureListener {
                     Log.i("error", it.message.toString())
                 }
+                .addOnSuccessListener {
+                    (fragment as ProfileFragment).deleteUser()
+                }
             if (imageFileURL.isNotEmpty()) {
                 removeUserImageFromCloudStorage(fragment, imageFileURL)
             }

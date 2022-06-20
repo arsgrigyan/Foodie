@@ -20,7 +20,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
-import com.southernsunrise.foodie.AboutUsFragment
 import com.southernsunrise.foodie.R
 import com.southernsunrise.foodie.utilities.Constants
 

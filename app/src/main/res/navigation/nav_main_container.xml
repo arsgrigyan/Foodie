@@ -36,12 +36,12 @@
         tools:layout="@layout/fragment_order" />
     <fragment
         android:id="@+id/aboutUsFragment"
-        android:name="com.southernsunrise.foodie.AboutUsFragment"
+        android:name="com.southernsunrise.foodie.fragments.AboutUsFragment"
         android:label="fragment_about_us"
         tools:layout="@layout/fragment_about_us" />
     <fragment
         android:id="@+id/paymentMethodsFragment"
-        android:name="com.southernsunrise.foodie.PaymentMethodsFragment"
+        android:name="com.southernsunrise.foodie.fragments.PaymentMethodsFragment"
         android:label="fragment_payment_methods"
         tools:layout="@layout/fragment_payment_methods" />
 </navigation>

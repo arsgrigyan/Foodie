@@ -1,4 +1,4 @@
-package com.southernsunrise.foodie
+package com.southernsunrise.foodie.fragments
 
 import android.graphics.Color
 import android.os.Bundle
@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.southernsunrise.foodie.R
 import com.southernsunrise.foodie.firebase.FirestoreClass
 import com.southernsunrise.foodie.utilities.Constants
 import com.southernsunrise.foodie.utilities.Constants.PAYMENT_METHOD_MASTERCARD
@@ -45,6 +46,7 @@ class PaymentMethodsFragment : Fragment(), View.OnClickListener {
 
         val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
         activity?.setActionBar(toolbar)
+        activity?.actionBar?.title = null
         toolbar.setNavigationOnClickListener {
             requireActivity().onBackPressed()
         }
